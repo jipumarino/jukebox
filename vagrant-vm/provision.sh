@@ -9,7 +9,7 @@ iptables -A PREROUTING -t nat -p tcp --dport 80 -j REDIRECT --to-port 8000
 
 # hostname
 hostname jukebox
-cat jukebox > /etc/hostname
+echo jukebox > /etc/hostname
 sed -i '1 s/$/ jukebox/' /etc/hosts
 
 # Preseed icecast config
@@ -27,7 +27,7 @@ echo "iptables-persistent iptables-persistent/autosave_v4 boolean true" | debcon
 wget -q -O - https://apt.mopidy.com/mopidy.gpg | apt-key add -
 wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/mopidy.list
 apt-get update
-apt-get install -yq libspotify12 libspotify-dev libasound-dev icecast2 gstreamer0.10-alsa gstreamer0.10-tools gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly pkg-config iptables-persistent vim git libnss-mdnss
+apt-get install -yq libspotify12 libspotify-dev libasound-dev icecast2 gstreamer0.10-alsa gstreamer0.10-tools gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly pkg-config iptables-persistent vim git libnss-mdns
 
 # Configure and start icecast
 sed -i -e 's/ENABLE=false/ENABLE=true/g' /etc/default/icecast2
