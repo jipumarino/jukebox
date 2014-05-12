@@ -7,9 +7,11 @@ Vagrant.configure(2) do |config|
   config.ssh.forward_agent = true
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = 1024
-    vb.name = "raspi"
+    vb.memory = 512
+    vb.name = "jukebox"
     vb.cpus = 1
   end
+
+  config.vm.provision "shell", path: "provision.sh"
 
 end
